@@ -80,6 +80,9 @@ StagefrightRecorder::StagefrightRecorder()
       mOutputFd(-1),
       mAudioSource(AUDIO_SOURCE_CNT),
       mVideoSource(VIDEO_SOURCE_LIST_END),
+#ifdef SAMSUNG_CAMERA_QCOM
+      mIsFrontCamera(false),
+#endif
       mStarted(false), mSurfaceMediaSource(NULL) {
 
     ALOGV("Constructor");
@@ -1467,6 +1470,9 @@ status_t StagefrightRecorder::setupCameraSource(
         return NO_INIT;
     }
 
+#ifdef SAMSUNG_CAMERA_QCOM
+    mIsFrontCamera = (*cameraSource)->isFrontCamera(); 
+#endif
     // When frame rate is not set, the actual frame rate will be set to
     // the current frame rate being used.
     if (mFrameRate == -1) {
