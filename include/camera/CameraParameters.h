@@ -927,6 +927,7 @@ public:
     void setPostviewSize(int x, int y);
     void getSupportedHfrSizes(Vector<Size> &sizes) const;
 #endif
+#endif
 
 private:
     DefaultKeyedVector<String8,String8>    mMap;
