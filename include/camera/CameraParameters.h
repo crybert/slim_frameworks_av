@@ -953,6 +953,7 @@ public:
     static const char SCENE_MODE_TEXT[];
     static const char ISO_50[];
 #endif
+#endif
 
 private:
     DefaultKeyedVector<String8,String8>    mMap;
