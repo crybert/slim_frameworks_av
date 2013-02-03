@@ -1740,7 +1740,25 @@ void StagefrightRecorder::setupMPEG4MetaData(int64_t startTimeUs, int32_t totalB
     }
     if (mTrackEveryTimeDurationUs > 0) {
         (*meta)->setInt64(kKeyTrackTimeStatus, mTrackEveryTimeDurationUs);
+    } 
+#ifdef SAMSUNG_CAMERA_QCOM
+    if (mCameraId == 1 || mIsFrontCamera) {
+        switch(mRotationDegrees) {
+             case 0:
+                 mRotationDegrees = 180;
+                 break;
+             case 180:
+                 mRotationDegrees = 0;
+                 break;
+             case 90:
+                 mRotationDegrees = 90;
+                 break;
+             case 270:
+                 mRotationDegrees = 270;
+                 break;
+        }
     }
+#endif
     if (mRotationDegrees != 0) {
         (*meta)->setInt32(kKeyRotation, mRotationDegrees);
     }
